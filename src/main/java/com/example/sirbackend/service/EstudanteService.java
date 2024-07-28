@@ -7,7 +7,6 @@ import com.example.sirbackend.model.Estudante;
 import com.example.sirbackend.model.Usuario;
 import com.example.sirbackend.repository.CursoRepository;
 import com.example.sirbackend.repository.EstudanteRepository;
-import com.example.sirbackend.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class EstudanteService {
     private EstudanteRepository estudanteRepository;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService usuarioService;
 
     @Autowired
     private CursoRepository cursoRepository;
@@ -34,7 +33,7 @@ public class EstudanteService {
     public Estudante createEstudante(Estudante estudante) {
         // Salvar o usuário primeiro
         Usuario usuario = estudante.getUsuario();
-        usuario = usuarioRepository.save(usuario);
+        usuario = usuarioService.createUsuario(usuario);
 
         // Atribuir o ID do usuário salvo ao estudante
         estudante.setUsuario(usuario);
