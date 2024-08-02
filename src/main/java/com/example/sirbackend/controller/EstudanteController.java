@@ -38,8 +38,9 @@ public class EstudanteController {
     }
 
     @PostMapping
-    public Estudante createEstudante(@RequestBody Estudante estudante) {
-        return estudanteService.createEstudante(estudante);
+    public ResponseEntity<Estudante> createEstudante(@RequestBody Estudante estudante) {
+        Estudante savedEstudante = estudanteService.saveEstudante(estudante);
+        return ResponseEntity.ok(savedEstudante);
     }
 
     @PutMapping("/{id}")

@@ -26,7 +26,7 @@ public class AjusteMatricula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_ajuste_matricula")
-    private Long id_ajuste_matricula;
+    private Long idAjusteMatricula;
 
     @Column(name = "tipo_solicitacao")
     private String tipoSolicitacao;
@@ -47,11 +47,11 @@ public class AjusteMatricula {
     private Date dataSolicitacao;
 
     @ManyToOne
-    @JoinColumn(name = "DISCIPLINA_id_disciplina", nullable = false)
+    @JoinColumn(name = "disciplina_id_disciplina", nullable = false)
     private Disciplina disciplina;
 
     @ManyToOne
-    @JoinColumn(name = "ESTUDANTE_id_estudante", nullable = false)
+    @JoinColumn(name = "estudante_id_estudante", nullable = false)
     private Estudante estudante;
 
     public boolean getSolicitacaoFeitaAnteriormente() {

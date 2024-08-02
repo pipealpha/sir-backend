@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,20 +25,20 @@ public class Estudante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_estudante")
-    private Long id_estudante;
+    private Long idEstudante;
 
     @Column(name = "matricula")
     private String matricula;
 
     @Column(name = "ano_semestre_ingresso")
-    private String ano_semestre_ingresso;
+    private String anoSemestreIngresso;
 
-    @ManyToOne
-    @JoinColumn(name = "USUARIO_id_usuario", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "usuario_id_usuario", nullable = false)
     private Usuario usuario;
 
     @ManyToOne
-    @JoinColumn(name = "CURSO_id_curso", nullable = false)
+    @JoinColumn(name = "curso_id_curso", nullable = false)
     private Curso curso;
 
     // Getters and Setters in Lombok

@@ -7,6 +7,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,4 +47,10 @@ public class Usuario {
     public enum Perfil {
         Estudante, Coordenador, RACI
     }
+
+
+    // Relacionamento OneToOne com Estudante
+    @OneToOne(mappedBy = "usuario")
+    private Estudante estudante;
+
 }

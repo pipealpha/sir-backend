@@ -28,7 +28,7 @@ public class DisciplinaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Disciplina> getDisciplinaById(@PathVariable Integer id) {
+    public ResponseEntity<Disciplina> getDisciplinaById(@PathVariable Long id) { // Corrigido o tipo de parâmetro para Long
         Disciplina disciplina = disciplinaService.getDisciplinaById(id);
         if (disciplina == null) {
             return ResponseEntity.notFound().build();
@@ -37,13 +37,19 @@ public class DisciplinaController {
         }
     }
 
+    @GetMapping("/curso/{id}")
+    public ResponseEntity<List<Disciplina>> getDisciplinasByCurso(@PathVariable Long id) {
+        List<Disciplina> disciplinas = disciplinaService.findDisciplinasByCursoId(id);
+        return ResponseEntity.ok(disciplinas);
+    }
+
     @PostMapping
     public Disciplina createDisciplina(@RequestBody Disciplina disciplina) {
         return disciplinaService.createDisciplina(disciplina);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Disciplina> updateDisciplina(@PathVariable Integer id, @RequestBody Disciplina disciplinaDetails) {
+    public ResponseEntity<Disciplina> updateDisciplina(@PathVariable Long id, @RequestBody Disciplina disciplinaDetails) { // Corrigido o tipo de parâmetro para Long
         Disciplina disciplina = disciplinaService.updateDisciplina(id, disciplinaDetails);
         if (disciplina == null) {
             return ResponseEntity.notFound().build();
@@ -53,7 +59,7 @@ public class DisciplinaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDisciplina(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteDisciplina(@PathVariable Long id) { // Corrigido o tipo de parâmetro para Long
         disciplinaService.deleteDisciplina(id);
         return ResponseEntity.noContent().build();
     }

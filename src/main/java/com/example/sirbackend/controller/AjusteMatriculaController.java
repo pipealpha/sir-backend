@@ -2,6 +2,7 @@ package com.example.sirbackend.controller;
 
 import java.util.List;
 
+import com.example.sirbackend.dto.AjusteMatriculaDTO;
 import com.example.sirbackend.model.AjusteMatricula;
 import com.example.sirbackend.service.AjusteMatriculaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,19 @@ public class AjusteMatriculaController {
     @Autowired
     private AjusteMatriculaService ajusteMatriculaService;
 
+    @PostMapping
+    public ResponseEntity<AjusteMatricula> createAjusteMatricula(@RequestBody AjusteMatriculaDTO ajusteMatriculaDTO) {
+        AjusteMatricula novoAjusteMatricula = ajusteMatriculaService.createAjusteMatricula(ajusteMatriculaDTO);
+        return ResponseEntity.ok(novoAjusteMatricula);
+    }
+
     @GetMapping
-    public List<AjusteMatricula> getAllAjustesMatricula() {
-        return ajusteMatriculaService.getAllAjustesMatricula();
+    public List<AjusteMatricula> getAllAjusteMatriculas() {
+        return ajusteMatriculaService.getAllAjusteMatriculas();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AjusteMatricula> getAjusteMatriculaById(@PathVariable Integer id) {
+    public ResponseEntity<AjusteMatricula> getAjusteMatriculaById(@PathVariable Long id) {
         AjusteMatricula ajusteMatricula = ajusteMatriculaService.getAjusteMatriculaById(id);
         if (ajusteMatricula == null) {
             return ResponseEntity.notFound().build();
@@ -37,13 +44,8 @@ public class AjusteMatriculaController {
         }
     }
 
-    @PostMapping
-    public AjusteMatricula createAjusteMatricula(@RequestBody AjusteMatricula ajusteMatricula) {
-        return ajusteMatriculaService.createAjusteMatricula(ajusteMatricula);
-    }
-
     @PutMapping("/{id}")
-    public ResponseEntity<AjusteMatricula> updateAjusteMatricula(@PathVariable Integer id, @RequestBody AjusteMatricula ajusteMatriculaDetails) {
+    public ResponseEntity<AjusteMatricula> updateAjusteMatricula(@PathVariable Long id, @RequestBody AjusteMatricula ajusteMatriculaDetails) {
         AjusteMatricula ajusteMatricula = ajusteMatriculaService.updateAjusteMatricula(id, ajusteMatriculaDetails);
         if (ajusteMatricula == null) {
             return ResponseEntity.notFound().build();
@@ -53,9 +55,8 @@ public class AjusteMatriculaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAjusteMatricula(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteAjusteMatricula(@PathVariable Long id) {
         ajusteMatriculaService.deleteAjusteMatricula(id);
         return ResponseEntity.noContent().build();
     }
-
 }

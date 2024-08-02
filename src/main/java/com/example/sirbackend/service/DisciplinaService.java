@@ -17,16 +17,20 @@ public class DisciplinaService {
         return disciplinaRepository.findAll();
     }
 
-    public Disciplina getDisciplinaById(Integer id) {
-        return disciplinaRepository.findById(Long.valueOf(id)).orElse(null);
+    public Disciplina getDisciplinaById(Long id) { // Corrigido o tipo de parâmetro para Long
+        return disciplinaRepository.findById(id).orElse(null);
+    }
+
+    public List<Disciplina> findDisciplinasByCursoId(Long cursoId) {
+        return disciplinaRepository.findByCursoIdCurso(cursoId);
     }
 
     public Disciplina createDisciplina(Disciplina disciplina) {
         return disciplinaRepository.save(disciplina);
     }
 
-    public Disciplina updateDisciplina(Integer id, Disciplina disciplinaDetails) {
-        Disciplina disciplina = disciplinaRepository.findById(Long.valueOf(id)).orElse(null);
+    public Disciplina updateDisciplina(Long id, Disciplina disciplinaDetails) { // Corrigido o tipo de parâmetro para Long
+        Disciplina disciplina = disciplinaRepository.findById(id).orElse(null);
         if (disciplina != null) {
             disciplina.setCodigo(disciplinaDetails.getCodigo());
             disciplina.setNome(disciplinaDetails.getNome());
@@ -37,8 +41,8 @@ public class DisciplinaService {
         }
     }
 
-    public void deleteDisciplina(Integer id) {
-        disciplinaRepository.deleteById(Long.valueOf(id));
+    public void deleteDisciplina(Long id) { // Corrigido o tipo de parâmetro para Long
+        disciplinaRepository.deleteById(id);
     }
 
 }

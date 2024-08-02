@@ -39,7 +39,7 @@ public class EstudanteService {
         estudante.setUsuario(usuario);
 
         // Buscar o curso pelo ID e atribuir ao estudante
-        Curso curso = cursoRepository.findById(estudante.getCurso().getId_curso()).orElseThrow(() -> new RuntimeException("Curso não encontrado"));
+        Curso curso = cursoRepository.findById(estudante.getCurso().getIdCurso()).orElseThrow(() -> new RuntimeException("Curso não encontrado"));
         estudante.setCurso(curso);
 
         return estudanteRepository.save(estudante);
@@ -49,9 +49,9 @@ public class EstudanteService {
         Estudante estudante = estudanteRepository.findById(Long.valueOf(id)).orElse(null);
         if (estudante != null) {
             estudante.setMatricula(estudanteDetails.getMatricula());
-            estudante.setAno_semestre_ingresso(estudanteDetails.getAno_semestre_ingresso());
+            estudante.setAnoSemestreIngresso(estudanteDetails.getAnoSemestreIngresso());
             estudante.setUsuario(estudanteDetails.getUsuario());
-            Curso curso = cursoRepository.findById(estudanteDetails.getCurso().getId_curso()).orElseThrow(() -> new RuntimeException("Curso não encontrado"));
+            Curso curso = cursoRepository.findById(estudanteDetails.getCurso().getIdCurso()).orElseThrow(() -> new RuntimeException("Curso não encontrado"));
             estudante.setCurso(curso);
             return estudanteRepository.save(estudante);
         } else {
@@ -61,6 +61,10 @@ public class EstudanteService {
 
     public void deleteEstudante(Integer id) {
         estudanteRepository.deleteById(Long.valueOf(id));
+    }
+
+    public Estudante saveEstudante(Estudante estudante) {
+        return estudanteRepository.save(estudante);
     }
 
 }
