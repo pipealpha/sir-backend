@@ -71,4 +71,8 @@ public class AjusteMatriculaService {
     public void deleteAjusteMatricula(Long id) {
         ajusteMatriculaRepository.deleteById(id);
     }
+
+    public List<AjusteMatricula> findByEstudanteId(Long estudanteId) {
+        return ajusteMatriculaRepository.findByEstudanteIdEstudante(estudanteId);
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.sirbackend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.sirbackend.dto.AjusteMatriculaDTO;
 import com.example.sirbackend.model.AjusteMatricula;
+import com.example.sirbackend.repository.AjusteMatriculaRepository;
 import com.example.sirbackend.service.AjusteMatriculaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ public class AjusteMatriculaController {
 
     @Autowired
     private AjusteMatriculaService ajusteMatriculaService;
+    @Autowired
+    private AjusteMatriculaRepository ajusteMatriculaRepository;
 
     @PostMapping
     public ResponseEntity<AjusteMatricula> createAjusteMatricula(@RequestBody AjusteMatriculaDTO ajusteMatriculaDTO) {
@@ -43,6 +47,13 @@ public class AjusteMatriculaController {
             return ResponseEntity.ok(ajusteMatricula);
         }
     }
+
+    @GetMapping("/estudante/{estudanteId}")
+    public ResponseEntity<List<AjusteMatricula>> getAjustesMatriculaByEstudante(@PathVariable Long estudanteId) {
+        List<AjusteMatricula> ajustes = ajusteMatriculaService.findByEstudanteId(estudanteId);
+        return ResponseEntity.ok(ajustes);
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<AjusteMatricula> updateAjusteMatricula(@PathVariable Long id, @RequestBody AjusteMatricula ajusteMatriculaDetails) {
