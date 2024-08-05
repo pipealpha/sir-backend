@@ -34,7 +34,7 @@ public class Estudante {
     @Column(name = "ano_semestre_ingresso")
     private String anoSemestreIngresso;
 
-    @JsonBackReference
+    //@JsonBackReference
     @OneToOne
     @JoinColumn(name = "usuario_id_usuario", nullable = false)
     private Usuario usuario;

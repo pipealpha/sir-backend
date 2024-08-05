@@ -11,4 +11,6 @@ public interface AjusteMatriculaRepository extends JpaRepository<AjusteMatricula
 
     List<AjusteMatricula> findByEstudanteIdEstudante(Long estudanteId);
 
+    List<AjusteMatricula> findByDisciplinaCursoIdCurso(Long cursoId);
+
 }

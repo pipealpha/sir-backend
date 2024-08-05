@@ -54,6 +54,12 @@ public class AjusteMatriculaController {
         return ResponseEntity.ok(ajustes);
     }
 
+    @GetMapping("/curso/{cursoId}")
+    public ResponseEntity<List<AjusteMatricula>> getSolicitacoesByCurso(@PathVariable Long cursoId) {
+        List<AjusteMatricula> solicitacoes = ajusteMatriculaService.findByCursoId(cursoId);
+        return ResponseEntity.ok(solicitacoes);
+    }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<AjusteMatricula> updateAjusteMatricula(@PathVariable Long id, @RequestBody AjusteMatricula ajusteMatriculaDetails) {

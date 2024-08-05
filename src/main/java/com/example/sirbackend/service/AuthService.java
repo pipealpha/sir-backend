@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.example.sirbackend.dto.UsuarioDTO;
+import com.example.sirbackend.model.Curso;
 import com.example.sirbackend.model.Estudante;
 import com.example.sirbackend.model.Usuario;
 import com.example.sirbackend.repository.UsuarioRepository;
@@ -30,12 +31,18 @@ public class AuthService {
         if (usuario != null && passwordEncoder.matches(password, usuario.getSenha())) {
             String token = jwtTokenProvider.generateToken(usuario.getEmail());
 
-            // Verificar se o usuário é um estudante e obter o estudanteId
+            // Verificar se o usuário é um estudante ou coordenador e obter o estudanteId
             Long estudanteId = null;
-            if (usuario.getPerfil() == Usuario.Perfil.Estudante) {
+            Long cursoId = null;
+            if (usuario.getPerfil() == Usuario.Perfil.Estudante || usuario.getPerfil() == Usuario.Perfil.Coordenador) {
                 Estudante estudante = usuario.getEstudante();
                 if (estudante != null) {
                     estudanteId = estudante.getIdEstudante();
+                }
+                assert estudante != null;
+                Curso curso = estudante.getCurso();
+                if (curso != null) {
+                    cursoId = curso.getIdCurso();
                 }
             }
 
@@ -43,6 +50,7 @@ public class AuthService {
             response.put("perfil", usuario.getPerfil().name());
             response.put("token", token);
             response.put("estudanteId", estudanteId);
+            response.put("cursoId", cursoId);
 
             return ResponseEntity.ok(response);
         } else {
