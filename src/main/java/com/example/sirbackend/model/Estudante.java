@@ -1,5 +1,6 @@
 package com.example.sirbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +34,7 @@ public class Estudante {
     @Column(name = "ano_semestre_ingresso")
     private String anoSemestreIngresso;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "usuario_id_usuario", nullable = false)
     private Usuario usuario;

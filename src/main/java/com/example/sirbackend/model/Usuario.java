@@ -1,5 +1,6 @@
 package com.example.sirbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -50,6 +51,7 @@ public class Usuario {
 
 
     // Relacionamento OneToOne com Estudante
+    @JsonBackReference
     @OneToOne(mappedBy = "usuario")
     private Estudante estudante;
 
