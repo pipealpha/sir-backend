@@ -17,7 +17,7 @@ public class DisciplinaService {
         return disciplinaRepository.findAll();
     }
 
-    public Disciplina getDisciplinaById(Long id) { // Corrigido o tipo de parâmetro para Long
+    public Disciplina getDisciplinaById(Long id) {
         return disciplinaRepository.findById(id).orElse(null);
     }
 
@@ -29,7 +29,7 @@ public class DisciplinaService {
         return disciplinaRepository.save(disciplina);
     }
 
-    public Disciplina updateDisciplina(Long id, Disciplina disciplinaDetails) { // Corrigido o tipo de parâmetro para Long
+    public Disciplina updateDisciplina(Long id, Disciplina disciplinaDetails) {
         Disciplina disciplina = disciplinaRepository.findById(id).orElse(null);
         if (disciplina != null) {
             disciplina.setCodigo(disciplinaDetails.getCodigo());
@@ -41,7 +41,7 @@ public class DisciplinaService {
         }
     }
 
-    public void deleteDisciplina(Long id) { // Corrigido o tipo de parâmetro para Long
+    public void deleteDisciplina(Long id) {
         disciplinaRepository.deleteById(id);
     }
 

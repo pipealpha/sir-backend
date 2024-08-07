@@ -49,8 +49,10 @@ public class AjusteMatriculaController {
     }
 
     @GetMapping("/estudante/{estudanteId}")
-    public ResponseEntity<List<AjusteMatricula>> getAjustesMatriculaByEstudante(@PathVariable Long estudanteId) {
-        List<AjusteMatricula> ajustes = ajusteMatriculaService.findByEstudanteId(estudanteId);
+    public ResponseEntity<List<AjusteMatricula>> getAjustesMatriculaByEstudante
+            (@PathVariable Long estudanteId) {
+        List<AjusteMatricula> ajustes =
+                ajusteMatriculaService.findByEstudanteId(estudanteId);
         return ResponseEntity.ok(ajustes);
     }
 
@@ -60,6 +62,11 @@ public class AjusteMatriculaController {
         return ResponseEntity.ok(solicitacoes);
     }
 
+    @GetMapping("/deferido")
+    public ResponseEntity<List<AjusteMatricula>> getSolicitacoesDeferido() {
+        List<AjusteMatricula> solicitacoes = ajusteMatriculaService.findByStatusSolicitacao("Deferido");
+        return ResponseEntity.ok(solicitacoes);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<AjusteMatricula> updateAjusteMatricula(@PathVariable Long id, @RequestBody AjusteMatricula ajusteMatriculaDetails) {

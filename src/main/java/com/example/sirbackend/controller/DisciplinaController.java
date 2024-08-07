@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.sirbackend.model.Disciplina;
 import com.example.sirbackend.service.DisciplinaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,7 +50,7 @@ public class DisciplinaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Disciplina> updateDisciplina(@PathVariable Long id, @RequestBody Disciplina disciplinaDetails) { // Corrigido o tipo de parâmetro para Long
+    public ResponseEntity<Disciplina> updateDisciplina(@PathVariable Long id, @RequestBody Disciplina disciplinaDetails) {
         Disciplina disciplina = disciplinaService.updateDisciplina(id, disciplinaDetails);
         if (disciplina == null) {
             return ResponseEntity.notFound().build();
@@ -59,7 +60,7 @@ public class DisciplinaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDisciplina(@PathVariable Long id) { // Corrigido o tipo de parâmetro para Long
+    public ResponseEntity<Void> deleteDisciplina(@PathVariable Long id) {
         disciplinaService.deleteDisciplina(id);
         return ResponseEntity.noContent().build();
     }

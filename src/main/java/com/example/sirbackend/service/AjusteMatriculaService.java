@@ -79,4 +79,8 @@ public class AjusteMatriculaService {
     public List<AjusteMatricula> findByCursoId(Long cursoId) {
         return ajusteMatriculaRepository.findByDisciplinaCursoIdCurso(cursoId);
     }
+
+    public List<AjusteMatricula> findByStatusSolicitacao(String status) {
+        return ajusteMatriculaRepository.findByStatusSolicitacao(status);
+    }
 }

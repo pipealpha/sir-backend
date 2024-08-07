@@ -13,4 +13,6 @@ public interface AjusteMatriculaRepository extends JpaRepository<AjusteMatricula
 
     List<AjusteMatricula> findByDisciplinaCursoIdCurso(Long cursoId);
 
+    List<AjusteMatricula> findByStatusSolicitacao(String status);
+
 }
